@@ -20,9 +20,9 @@ export function ArticleCard({ article }: { article: Article }) {
           <p className="mt-3 max-w-2xl text-lg leading-8 text-ink/75">{article.excerpt}</p>
           <Link
             href={`/writings/${article.slug}`}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-navy"
+            className="mt-5 inline-flex text-sm font-medium uppercase tracking-[0.2em] text-navy"
           >
-            Read Article <span aria-hidden>→</span>
+            Read Article
           </Link>
         </div>
       </div>

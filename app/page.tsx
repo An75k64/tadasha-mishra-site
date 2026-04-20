@@ -14,7 +14,10 @@ export default function HomePage() {
         <Container className="relative grid min-h-[86vh] items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs uppercase tracking-[0.4em] text-bronze">Public Service Archive</p>
-            <h1 className="mt-6 text-6xl font-semibold leading-none text-ink sm:text-7xl lg:text-[5.75rem]" style={{ fontFamily: "var(--font-serif)" }}>
+            <h1
+              className="mt-5 text-4xl font-semibold leading-[1.03] tracking-[-0.015em] text-ink sm:text-5xl lg:mt-6 lg:text-[4.35rem] lg:leading-[1.01]"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
               A life in public service guided by discipline, integrity, and inner clarity.
             </h1>
             <div className="mt-8 h-px w-24 bg-bronze" />
@@ -72,7 +75,9 @@ export default function HomePage() {
       <section className="deferred-section py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeading eyebrow="Latest Writing" title={featuredArticle.title} description={featuredArticle.excerpt} />
-          <div className="rounded-[2rem] border border-black/10 bg-white/90 p-8 shadow-soft">
+          <div className="group relative overflow-hidden rounded-[2rem] border border-black/10 bg-white/90 p-8 shadow-soft transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_rgba(36,33,30,0.14)]">
+            <span className="pointer-events-none absolute inset-x-8 top-0 h-[3px] origin-left scale-x-0 rounded-full bg-gradient-to-r from-bronze/50 via-[#9b6b2d] to-bronze/70 transition-transform duration-500 group-hover:scale-x-100" />
+            <span className="pointer-events-none absolute inset-x-10 top-0 h-6 bg-gradient-to-b from-[#9b6b2d]/20 to-transparent opacity-0 blur-sm transition duration-500 group-hover:opacity-100" />
             <p className="text-sm uppercase tracking-[0.24em] text-bronze">
               {new Date(featuredArticle.date).toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" })}
             </p>
@@ -81,8 +86,12 @@ export default function HomePage() {
                 {paragraph}
               </p>
             ))}
-            <Link href={`/writings/${featuredArticle.slug}`} className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-navy">
-              Read Article <span aria-hidden>→</span>
+            <Link
+              href={`/writings/${featuredArticle.slug}`}
+              className="group/link mt-8 inline-flex text-sm uppercase tracking-[0.22em] text-navy"
+            >
+              Read Article
+              <span className="ml-0.5 inline-block h-px w-0 self-end bg-[#9b6b2d] transition-all duration-300 group-hover/link:w-10" />
             </Link>
           </div>
         </Container>
@@ -103,8 +112,8 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
-            <Link href="/service" className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-navy">
-              View Full Journey <span aria-hidden>→</span>
+            <Link href="/service" className="inline-flex text-sm uppercase tracking-[0.22em] text-navy">
+              View Full Journey
             </Link>
           </div>
         </Container>
@@ -127,7 +136,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between gap-8">
             <SectionHeading eyebrow="Gallery Preview" title="Moments from office, service, ceremony, and public leadership." />
             <Link href="/gallery" className="hidden text-sm uppercase tracking-[0.22em] text-navy md:inline-flex">
-              View Gallery →
+              View Gallery
             </Link>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -150,7 +159,7 @@ export default function HomePage() {
             ))}
           </div>
           <Link href="/gallery" className="mt-8 inline-flex text-sm uppercase tracking-[0.22em] text-navy md:hidden">
-            View Gallery →
+            View Gallery
           </Link>
         </Container>
       </section>

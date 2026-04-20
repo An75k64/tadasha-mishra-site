@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import clsx from "clsx";
 import { achievements, timeline } from "@/lib/site-data";
 
@@ -15,6 +15,34 @@ export function ServiceShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeEntry = timeline[activeIndex];
 
+  const focusedDetail = (
+    <div className="rounded-[2rem] border border-white/80 bg-white/90 p-7 shadow-[10px_10px_24px_rgba(171,186,199,0.22),-10px_-10px_24px_rgba(255,255,255,0.92)]">
+      <p className="text-xs uppercase tracking-[0.3em] text-bronze">Focused Service Detail</p>
+      <div className="mt-5 flex items-center gap-4">
+        <div
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f2f6f9] text-2xl font-semibold text-navy shadow-[inset_8px_8px_18px_rgba(195,208,220,0.45),inset_-8px_-8px_18px_rgba(255,255,255,0.95)]"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          {activeEntry.year}
+        </div>
+        <div>
+          <p className="text-xs uppercase tracking-[0.22em] text-[#66a8c6]">{activeEntry.focus}</p>
+          <h3 className="mt-2 text-3xl font-semibold text-ink" style={{ fontFamily: "var(--font-serif)" }}>
+            {activeEntry.title}
+          </h3>
+        </div>
+      </div>
+      <p className="mt-6 text-lg leading-8 text-ink/70">{activeEntry.description}</p>
+      <div className="mt-6 space-y-3">
+        {activeEntry.details.map((detail) => (
+          <div key={detail} className="rounded-[1.4rem] bg-[#f6f8fa] px-5 py-4 text-base leading-7 text-ink/75">
+            {detail}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="mt-16 space-y-12">
       <div className="overflow-hidden rounded-[2.5rem] border border-white/70 bg-[#eef2f5] p-6 shadow-soft sm:p-8">
@@ -24,16 +52,16 @@ export function ServiceShowcase() {
               const isActive = index === activeIndex;
 
               return (
-                <button
-                  key={entry.year}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  className={clsx(
-                    "group relative min-h-[18rem] overflow-hidden rounded-[2rem] border border-white/80 bg-[#f7fafc] p-5 text-left transition duration-300",
-                    "shadow-[12px_12px_26px_rgba(165,180,200,0.26),-12px_-12px_26px_rgba(255,255,255,0.9)]",
-                    isActive && "border-[#9cc3df] bg-white ring-2 ring-[#c8e1f0]"
-                  )}
-                >
+                <Fragment key={entry.year}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    className={clsx(
+                      "group relative min-h-[18rem] overflow-hidden rounded-[2rem] border border-white/80 bg-[#f7fafc] p-5 text-left transition duration-300",
+                      "shadow-[12px_12px_26px_rgba(165,180,200,0.26),-12px_-12px_26px_rgba(255,255,255,0.9)]",
+                      isActive && "border-[#9cc3df] bg-white ring-2 ring-[#c8e1f0]"
+                    )}
+                  >
                   <div
                     className={clsx(
                       "absolute inset-x-6 top-5 h-2 rounded-full bg-gradient-to-r from-[#c6dce7] to-[#edf5f9] opacity-80 transition",
@@ -63,53 +91,41 @@ export function ServiceShowcase() {
                         {icons[index % icons.length]}
                       </svg>
                     </span>
-                    <p className="text-xs uppercase tracking-[0.22em] text-[#66a8c6]">{entry.focus}</p>
+                    <p
+                      className={clsx(
+                        "min-h-[3rem] w-full pr-1 text-sm font-medium uppercase leading-[1.35] tracking-[0.12em] break-words",
+                        isActive ? "text-[#1f7ea8]" : "text-[#3f8fb3]"
+                      )}
+                    >
+                      {entry.focus}
+                    </p>
                   </div>
 
-                  <h3 className="mt-5 text-2xl font-semibold leading-tight text-ink" style={{ fontFamily: "var(--font-serif)" }}>
+                  <h3
+                    className="mt-5 text-[1.7rem] font-semibold leading-tight text-ink"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
                     {entry.title}
                   </h3>
                   <p className="mt-4 text-base leading-7 text-ink/60">{entry.description}</p>
 
                   <div
                     className={clsx(
-                      "mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-navy transition",
+                      "mt-5 inline-flex text-sm uppercase tracking-[0.2em] text-navy transition",
                       isActive ? "opacity-100" : "opacity-55 group-hover:opacity-85"
                     )}
                   >
                     <span>{isActive ? "Selected" : "Click to focus"}</span>
-                    <span aria-hidden>→</span>
                   </div>
-                </button>
+                  </button>
+
+                  {isActive ? <div className="xl:hidden md:col-span-2">{focusedDetail}</div> : null}
+                </Fragment>
               );
             })}
           </div>
 
-          <aside className="rounded-[2rem] border border-white/80 bg-white/90 p-7 shadow-[10px_10px_24px_rgba(171,186,199,0.22),-10px_-10px_24px_rgba(255,255,255,0.92)]">
-            <p className="text-xs uppercase tracking-[0.3em] text-bronze">Focused Service Detail</p>
-            <div className="mt-5 flex items-center gap-4">
-              <div
-                className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f2f6f9] text-2xl font-semibold text-navy shadow-[inset_8px_8px_18px_rgba(195,208,220,0.45),inset_-8px_-8px_18px_rgba(255,255,255,0.95)]"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                {activeEntry.year}
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-[#66a8c6]">{activeEntry.focus}</p>
-                <h3 className="mt-2 text-3xl font-semibold text-ink" style={{ fontFamily: "var(--font-serif)" }}>
-                  {activeEntry.title}
-                </h3>
-              </div>
-            </div>
-            <p className="mt-6 text-lg leading-8 text-ink/70">{activeEntry.description}</p>
-            <div className="mt-6 space-y-3">
-              {activeEntry.details.map((detail) => (
-                <div key={detail} className="rounded-[1.4rem] bg-[#f6f8fa] px-5 py-4 text-base leading-7 text-ink/75">
-                  {detail}
-                </div>
-              ))}
-            </div>
-          </aside>
+          <aside className="hidden xl:block">{focusedDetail}</aside>
         </div>
       </div>
 

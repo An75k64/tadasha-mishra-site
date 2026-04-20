@@ -132,39 +132,48 @@ export const galleryImages = [
   {
     src: "/images/portraits/tadasha-portrait.png",
     alt: "Formal portrait of Tadasha Mishra in uniform",
-    featured: true
+    featured: true,
+    tags: ["Featured", "Portraits"]
   },
   {
     src: "/images/gallery/office-writing.jpg",
-    alt: "Tadasha Mishra writing at her desk"
+    alt: "Tadasha Mishra writing at her desk",
+    tags: ["Office"]
   },
   {
     src: "/images/gallery/desk-signing.jpg",
-    alt: "Tadasha Mishra signing documents at headquarters"
+    alt: "Tadasha Mishra signing documents at headquarters",
+    tags: ["Office"]
   },
   {
     src: "/images/gallery/flag-meeting.jpg",
-    alt: "Official meeting at police headquarters"
+    alt: "Official meeting at police headquarters",
+    tags: ["Meetings"]
   },
   {
     src: "/images/gallery/formal-address.jpg",
-    alt: "Formal seated portrait in office"
+    alt: "Formal seated portrait in office",
+    tags: ["Office", "Portraits"]
   },
   {
     src: "/images/gallery/ceremonial-bouquet.jpg",
-    alt: "Ceremonial bouquet presentation in office"
+    alt: "Ceremonial bouquet presentation in office",
+    tags: ["Ceremony"]
   },
   {
     src: "/images/gallery/government-meeting.jpg",
-    alt: "Official gathering with government representatives"
+    alt: "Official gathering with government representatives",
+    tags: ["Meetings"]
   },
   {
     src: "/images/gallery/arrival-ceremony.jpg",
-    alt: "Ceremonial arrival with officers and dignitaries"
+    alt: "Ceremonial arrival with officers and dignitaries",
+    tags: ["Ceremony"]
   },
   {
     src: "/images/gallery/field-visit.jpg",
-    alt: "Field visit and reception by officials"
+    alt: "Field visit and reception by officials",
+    tags: ["Field"]
   }
 ];
 
